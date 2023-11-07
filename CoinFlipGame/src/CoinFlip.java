@@ -1,7 +1,7 @@
 
 public class CoinFlip {
-	Player player;
-	Coin coin;
+	protected Player player;
+	protected Coin coin;
 	public static final boolean WIN = true;
 	
 	public static void main(String[] args) {
@@ -19,12 +19,38 @@ public class CoinFlip {
 		
 	}
 	public boolean play() {
-		return CoinFlip.WIN;
+		player.setName("Rusty Katt");
+		System.out.println("Hello, " + player.getName());
+		System.out.println("Here are " + player.getPoints() + " points to start!");
+		
+		while(player.getPoints() >= Player.getLoseScore() && 
+				player.getPoints() <= Player.getWinScore()) {
+			int wager = getWager();
+			boolean guess = getGuess();
+			boolean result = flipCoin();
+			if (guess == result) {
+				System.out.println("You guessed right!");
+				player.adjustPoints(wager);
+			} else {
+				System.out.println("You guess wrong!");
+				player.adjustPoints(-wager);
+			}
+			System.out.println("You now have " + player.getPoints() +
+					" points.");
+		}
+		
+		if(player.getPoints() < Player.getLoseScore()) {
+			return !CoinFlip.WIN;
+		} else {
+			return CoinFlip.WIN;
+		}
+		
 	}
 	
 	protected int getWager() {
-		return 5;
+		return 10;
 	}
+	
 	protected boolean getGuess() {
 		return Coin.HEADS;
 		
@@ -34,6 +60,7 @@ public class CoinFlip {
 		return coin.flip();
 		
 	}
+	
 }
 
 

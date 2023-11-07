@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Coin {
 
@@ -8,8 +9,7 @@ public class Coin {
 	private Coin() {}
 	
 	public boolean flip() {
-		// TODO Auto-generated method stub
-		return Coin.TAILS;
+		return new Random().nextBoolean();
 	}
 
 	public static Coin getInstance() {
