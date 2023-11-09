@@ -26,7 +26,7 @@ public class CoinFlip {
 		while(player.getPoints() >= Player.getLoseScore() && 
 				player.getPoints() <= Player.getWinScore()) {
 			int wager = getWager();
-			boolean guess = getGuess();
+			boolean guess = getGuess(player);
 			boolean result = flipCoin();
 			if (guess == result) {
 				System.out.println("You guessed right!");
@@ -51,8 +51,8 @@ public class CoinFlip {
 		return 10;
 	}
 	
-	protected boolean getGuess() {
-		return Coin.HEADS;
+	protected boolean getGuess(Player p) {
+		return p.getGuess();
 		
 	}
 	
